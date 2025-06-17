@@ -1,0 +1,15 @@
+pandas
+numpy
+scikit-learn
+python-dotenv
+requests
+
+streamlit
+PyPDF2
+python-docx
+
+faiss-cpu
+openai==0.28
+sentence-transformers
+
+
