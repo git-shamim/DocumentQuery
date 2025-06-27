@@ -14,8 +14,8 @@ COPY . /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Expose default Streamlit port
-EXPOSE 8501
+# Expose port 8080 for Cloud Run
+EXPOSE 8080
 
-# Run the app
-CMD ["streamlit", "run", "app.py"]
+# Run Streamlit with required host and port
+CMD ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
