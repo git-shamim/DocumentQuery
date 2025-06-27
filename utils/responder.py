@@ -2,14 +2,15 @@ import os
 import requests
 from dotenv import load_dotenv
 
-import streamlit as st
-GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
+# Load .env locally (ignored if not present or on Cloud Run)
+load_dotenv()
 
-# Load API key securely
-# load_dotenv()
-# GROQ_API_KEY = os.getenv("GROQ_API_KEY")  # Ensure this is stored in your .env
+# Try from env (Cloud Run) or .env (local)
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY")
 
-# Priority of Groq-supported models
+if not GROQ_API_KEY:
+    raise RuntimeError("❌ GROQ_API_KEY not found in environment variables or .env file.")
+
 GROQ_MODELS_PRIORITY = [
     "llama3-70b-8192",
     "llama3-8b-8192",
